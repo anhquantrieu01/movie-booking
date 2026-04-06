@@ -6,14 +6,14 @@ export async function GET(
   {
     params,
   }: {
-    params: Promise<{ showtimeId: string }>;
+    params: Promise<{ id: string }>;
   },
 ) {
-  const { showtimeId } = await params;
+  const { id } = await params;
 
   const seats = await prisma.bookingSeat.findMany({
     where: {
-      showtimeId,
+      showtimeId: id,
       booking: {
         OR: [
           { status: "CONFIRMED" },
